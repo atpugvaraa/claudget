@@ -38,11 +38,7 @@ interface RawCredentials {
  * a path, or allow a Keychain prompt.
  */
 export type CredentialsProblem =
-  | 'signed-out'
-  | 'not-installed'
-  | 'keychain-denied'
-  | 'malformed'
-  | 'no-token';
+  'signed-out' | 'not-installed' | 'keychain-denied' | 'malformed' | 'no-token';
 
 export interface LookupOptions {
   /**

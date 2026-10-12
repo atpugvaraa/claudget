@@ -120,7 +120,7 @@ function simulate(seed: number): SimResult {
   let trackN = 0;
   let estimatedN = 0;
   let ri = 0;
-  for (let t = T0 + MIN; t < end; ) {
+  for (let t = T0 + MIN; t < end;) {
     // Score what was on screen at each request since the last poll.
     while (ri < reqs.length && reqs[ri]!.at < t) {
       const at = reqs[ri]!.at;
