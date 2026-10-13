@@ -22,7 +22,7 @@ Choose one package manager and use it consistently in this checkout. `package-lo
 | Package manager | Install dependencies | Start development app |
 | --------------- | -------------------- | --------------------- |
 | npm             | `npm install`        | `npm run dev`         |
-| pnpm 10+        | `pnpm install`       | `pnpm run dev`        |
+| pnpm 11         | `pnpm install`       | `pnpm run dev`        |
 | Bun             | `bun install`        | `bun run dev`         |
 | Yarn            | `yarn install`       | `yarn run dev`        |
 
@@ -53,18 +53,22 @@ Run the relevant checks before submitting. For a full check, run all four comman
 | `npm run lint`         | `pnpm run lint`         | `bun run lint`         | `yarn run lint`         |
 | `npm run format:check` | `pnpm run format:check` | `bun run format:check` | `yarn run format:check` |
 
-`typecheck` and `test` cover both workspaces. Tests run locally and do not require provider credentials or network access.
+`typecheck` and `test` cover both workspaces. Tests run locally and do not require Claude Code credentials or network access.
+
+`format:check` is sensitive to the exact Prettier version. `package-lock.json` pins one; pnpm, Bun and Yarn resolve the `^3.4.2` range in `devDependencies` to the newest 3.x, which formats two files in `packages/core` differently. If it flags files you have not touched, install with npm so the check runs against the pinned version.
 
 ## Electron troubleshooting
 
-If Electron reports **“Electron failed to install correctly”**, delete its package directory and download the binary manually from the repository root:
+If Electron reports **“Electron failed to install correctly”**, and you use npm, delete its package directory and download the binary manually from the repository root:
 
 ```bash
 rm -rf node_modules/electron
 npx install-electron --no
 ```
 
-Then retry the development command. If the install is still broken, remove `node_modules` and reinstall with the same package manager you chose above. Do not switch package managers mid-install.
+With pnpm, Bun or Yarn those two commands do not apply: there is no `install-electron` in the root `node_modules/.bin`, and with pnpm Electron lives under `packages/desktop/node_modules`. Delete `node_modules` and run the install again with the package manager you chose.
+
+Then retry the development command. Do not switch package managers mid-install.
 
 If the app launches but shows no usage, there may be no Claude Code transcript history on this machine yet. Plan-limit data is separate and requires Claude Code credentials; neither is a prerequisite for building the project.
 

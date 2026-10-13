@@ -222,7 +222,7 @@ Choose one package manager and use it consistently:
 | Package manager | Install dependencies | Run in development |
 | --------------- | -------------------- | ------------------ |
 | npm             | `npm install`        | `npm run dev`      |
-| pnpm 10+        | `pnpm install`       | `pnpm run dev`     |
+| pnpm 11         | `pnpm install`       | `pnpm run dev`     |
 | Bun             | `bun install`        | `bun run dev`      |
 | Yarn            | `yarn install`       | `yarn run dev`     |
 
@@ -253,7 +253,7 @@ Use the same package manager you chose above. The core and desktop builds are ru
 | Package manager | Build core + desktop | Run the built app |
 | --------------- | -------------------- | ----------------- |
 | npm             | `npm run build`      | `npm start`       |
-| pnpm 10+        | `pnpm run build`     | `pnpm start`      |
+| pnpm 11         | `pnpm run build`     | `pnpm start`      |
 | Bun             | `bun run build`      | `bun run start`   |
 | Yarn            | `yarn run build`     | `yarn start`      |
 
@@ -269,7 +269,7 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for packaging, test, type-check, lint, 
 - **Plan limits stuck on "Sign in…" / "login expired".** — Run `claude` once to refresh credentials; the widget picks it up on the next poll.
 - **Plan limits showing "Cached" / rate-limited.** — Anthropic is throttling the usage endpoint (expected if you poll a lot). It backs off on its own; local data is unaffected. Raise `officialPollIntervalMs` if it persists.
 - **Cost numbers look off.** — They're estimates from a bundled price table, not official, and can lag Anthropic's current prices. (Plan-limit percentages come straight from Anthropic and are exact.)
-- **"Electron failed to install correctly."** — Delete `node_modules/electron`, then run `npx install-electron --no` manually from the repository root.
+- **"Electron failed to install correctly."** — With npm, delete `node_modules/electron`, then run `npx install-electron --no` manually from the repository root. With pnpm, Bun or Yarn, delete `node_modules` and run the install again. See [`CONTRIBUTING.md`](CONTRIBUTING.md#electron-troubleshooting).
 - **Logs** — tray menu or **Settings → Data → Logs**. Set `logLevel: "debug"` for more.
 
 ## Project layout

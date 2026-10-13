@@ -1,7 +1,6 @@
 packages:
   - 'packages/*'
-allowBuilds:
-  esbuild: set this to true or false
 linkWorkspacePackages: true
-onlyBuiltDependencies:
-  - electron
+allowBuilds:
+  esbuild: true
+  electron-winstaller: true
