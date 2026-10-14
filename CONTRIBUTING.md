@@ -55,8 +55,6 @@ Run the relevant checks before submitting. For a full check, run all four comman
 
 `typecheck` and `test` cover both workspaces. Tests run locally and do not require Claude Code credentials or network access.
 
-`format:check` is sensitive to the exact Prettier version. `package-lock.json` pins one; pnpm, Bun and Yarn resolve the `^3.4.2` range in `devDependencies` to the newest 3.x, which formats two files in `packages/core` differently. If it flags files you have not touched, install with npm so the check runs against the pinned version.
-
 ## Electron troubleshooting
 
 If Electron reports **“Electron failed to install correctly”**, and you use npm, delete its package directory and download the binary manually from the repository root:

@@ -259,7 +259,7 @@ Use the same package manager you chose above. The core and desktop builds are ru
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for packaging, test, type-check, lint, and formatting commands.
 
-**Packaging** ([`packages/desktop/electron-builder.yml`](packages/desktop/electron-builder.yml)) targets Windows NSIS + portable, macOS dmg (universal, Apple Silicon and Intel), and Linux AppImage; output lands in `packages/desktop/release`. Releases are cut by pushing a tag, which triggers the GitHub Actions workflow to build all three OSes.
+**Packaging** ([`packages/desktop/electron-builder.yml`](packages/desktop/electron-builder.yml)) targets Windows NSIS + portable, macOS dmg (universal, Apple Silicon and Intel), and Linux AppImage; output lands in `packages/desktop/release`. Releases are cut by pushing a tag (`npm version patch && git push --follow-tags`), which triggers the GitHub Actions workflow to build all three OSes.
 
 > **Windows gotcha:** electron-builder pulls a `winCodeSign` bundle containing macOS symlinks; extracting it can fail with "A required privilege is not held by the client" unless Developer Mode is on (Settings → System → For developers) or you run from an elevated shell. The macOS bits don't matter for a Windows build.
 
